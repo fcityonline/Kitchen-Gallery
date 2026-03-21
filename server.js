@@ -32,10 +32,29 @@ const app = express();
 app.disable('x-powered-by');
 app.use(helmet());
 app.use(securityHeaders);
+// const allowedOrigins = [
+//   'http://localhost:3000',
+//   'http://localhost:3001',
+//   process.env.FRONTEND_URL
+// ].filter(Boolean);
+
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('CORS policy: origin not allowed'));
+//     }
+//   },
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
+
 const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  process.env.FRONTEND_URL
+  'http://localhost:5173', // Vite dev server
+  'http://localhost:3000', 
+  process.env.FRONTEND_URL  // from Render env
 ].filter(Boolean);
 
 app.use(cors({
